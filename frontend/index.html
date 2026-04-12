@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="pageTitle"></title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="nav">
+    <span class="nav-logo" id="navLogo"></span>
+    <nav id="mainNav">
+      <a href="#about" data-section="about">About</a>
+      <a href="#projects" data-section="projects">Projects</a>
+      <a href="#contact" data-section="contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="about">
+    <div class="hero-content">
+      <div class="terminal-prompt">
+        <span class="prompt-user" id="terminalUser"></span><span class="prompt-sep">:</span><span class="prompt-path">~</span><span class="prompt-dollar">$</span>
+        <span class="prompt-cmd" id="typedCmd"></span><span class="cursor">|</span>
+      </div>
+      <h1 class="hero-title" id="heroTitle"></h1>
+      <p class="hero-subtitle" id="heroSubtitle"></p>
+      <div class="hero-badges" id="heroBadges"></div>
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-primary">View Projects</a>
+        <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="projects-section" id="projects">
+    <div class="container">
+      <h2 class="section-title">Projects</h2>
+      <p class="section-subtitle">
+        Repos tagged <code>portfolio</code> on GitHub automatically appear here.
+      </p>
+
+      <div class="filter-bar">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="featured">Featured</button>
+        <button class="filter-btn" data-filter="github">Auto-discovered</button>
+      </div>
+
+      <div class="projects-grid" id="projectsGrid"></div>
+
+      <div class="projects-empty hidden" id="projectsEmpty">
+        <p>No projects found.</p>
+      </div>
+
+      <div class="projects-loading" id="projectsLoading">
+        <div class="spinner"></div>
+        <p>Loading projects…</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact-section" id="contact">
+    <div class="contact-inner">
+      <span class="contact-availability">Available for work</span>
+      <h2 class="contact-heading">Let's build something together.</h2>
+      <p class="contact-sub">Open to full-time backend .NET roles. Reach out and let's talk.</p>
+
+      <div class="contact-email-wrap">
+        <a id="contactEmail" href="#" class="contact-email">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+          <span id="contactEmailText"></span>
+        </a>
+      </div>
+
+      <div class="contact-socials" id="contactSocials"></div>
+    </div>
+  </section>
+
+  <footer>
+    <p id="footerText"></p>
+  </footer>
+
+  <script src="config.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
