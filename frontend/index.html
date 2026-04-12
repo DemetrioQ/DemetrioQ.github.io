@@ -23,18 +23,73 @@
 
   <!-- HERO -->
   <section class="hero" id="about">
-    <div class="hero-content">
-      <div class="terminal-prompt">
-        <span class="prompt-user" id="terminalUser"></span><span class="prompt-sep">:</span><span class="prompt-path">~</span><span class="prompt-dollar">$</span>
-        <span class="prompt-cmd" id="typedCmd"></span><span class="cursor">|</span>
+    <div class="hero-grid">
+
+      <!-- Left: text content -->
+      <div class="hero-content">
+        <div class="terminal-prompt">
+          <span class="prompt-user" id="terminalUser"></span><span class="prompt-sep">:</span><span class="prompt-path">~</span><span class="prompt-dollar">$</span>
+          <span class="prompt-cmd" id="typedCmd"></span><span class="cursor">|</span>
+        </div>
+        <h1 class="hero-title" id="heroTitle"></h1>
+        <p class="hero-subtitle" id="heroSubtitle"></p>
+        <div class="hero-badges" id="heroBadges"></div>
+        <div class="hero-actions">
+          <a href="#projects" class="btn btn-primary">View Projects</a>
+          <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+        </div>
       </div>
-      <h1 class="hero-title" id="heroTitle"></h1>
-      <p class="hero-subtitle" id="heroSubtitle"></p>
-      <div class="hero-badges" id="heroBadges"></div>
-      <div class="hero-actions">
-        <a href="#projects" class="btn btn-primary">View Projects</a>
-        <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+
+      <!-- Right: code window -->
+      <div class="hero-code-wrap" aria-hidden="true">
+        <div class="code-window">
+          <div class="code-window-bar">
+            <span class="dot dot-red"></span>
+            <span class="dot dot-yellow"></span>
+            <span class="dot dot-green"></span>
+            <span class="code-window-title">DemetrioQuinones.cs</span>
+          </div>
+          <pre class="code-window-body"><code><span class="cs-comment">// Backend Engineer · Banking &amp; Fintech</span>
+<span class="cs-kw">public class</span> <span class="cs-type">DemetrioQuinones</span>
+  : <span class="cs-type">ISoftwareEngineer</span>
+<span class="cs-brace">{</span>
+  <span class="cs-kw">public int</span> <span class="cs-prop">YearsOfExperience</span> <span class="cs-op">=&gt;</span> <span class="cs-num">3</span><span class="cs-op">;</span>
+
+  <span class="cs-kw">public string</span><span class="cs-op">[]</span> <span class="cs-prop">Expertise</span> <span class="cs-op">=&gt;</span> <span class="cs-brace">[</span>
+    <span class="cs-str">"ASP.NET Web API"</span><span class="cs-op">,</span>
+    <span class="cs-str">"C# / .NET Framework"</span><span class="cs-op">,</span>
+    <span class="cs-str">"SQL Server"</span><span class="cs-op">,</span>
+    <span class="cs-str">"JWT Authentication"</span><span class="cs-op">,</span>
+    <span class="cs-str">"Microservices"</span><span class="cs-op">,</span>
+    <span class="cs-str">"Redis"</span><span class="cs-op">,</span>
+  <span class="cs-brace">];</span>
+
+  <span class="cs-kw">public string</span> <span class="cs-prop">Domain</span> <span class="cs-op">=&gt;</span>
+    <span class="cs-str">"Banking &amp; Fintech"</span><span class="cs-op">;</span>
+
+  <span class="cs-kw">public bool</span> <span class="cs-prop">OpenToWork</span> <span class="cs-op">=&gt;</span> <span class="cs-kw">true</span><span class="cs-op">;</span>
+<span class="cs-brace">}</span></code></pre>
+        </div>
+
+        <!-- Stats below the window -->
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <span class="stat-number">3</span>
+            <span class="stat-label">Years Exp.</span>
+          </div>
+          <div class="hero-stat-divider"></div>
+          <div class="hero-stat">
+            <span class="stat-number">2</span>
+            <span class="stat-label">Industries</span>
+          </div>
+          <div class="hero-stat-divider"></div>
+          <div class="hero-stat">
+            <span class="stat-number">∞</span>
+            <span class="stat-label">Coffee</span>
+          </div>
+        </div>
       </div>
+
     </div>
   </section>
 

@@ -23,7 +23,7 @@ function populatePage() {
   document.getElementById('terminalUser').textContent = CONFIG.TERMINAL_USER;
   document.getElementById('navLogo').innerHTML = `&lt;${escHtml(CONFIG.NAME)} /&gt;`;
   document.getElementById('heroTitle').textContent = CONFIG.TITLE;
-  document.getElementById('heroSubtitle').textContent = CONFIG.TAGLINE;
+  document.getElementById('heroSubtitle').innerHTML = highlightTagline(CONFIG.TAGLINE);
   document.getElementById('heroBadges').innerHTML =
     CONFIG.BADGES.map(b => `<span class="badge">${escHtml(b)}</span>`).join('');
 
@@ -48,25 +48,55 @@ function populatePage() {
 //  Scroll spy — highlights the active nav link
 // ============================================================
 function initScrollSpy() {
-  const sections = ['about', 'projects', 'contact'].map(id => document.getElementById(id));
+  const sectionIds = ['about', 'projects', 'contact'];
   const navLinks = document.querySelectorAll('#mainNav a[data-section]');
+  const navHeight = document.querySelector('.nav').offsetHeight;
+  let ticking = false;
 
   const setActive = id => {
     navLinks.forEach(a => a.classList.toggle('active', a.dataset.section === id));
   };
 
-  // Set initial active on load
-  setActive('about');
+  const getActiveSection = () => {
+    const scrollY = window.scrollY;
 
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) setActive(entry.target.id);
-    });
-  }, {
-    rootMargin: '-40% 0px -55% 0px', // triggers when section is in the middle band of viewport
+    // Bottom of page → always the last section
+    const atBottom = scrollY + window.innerHeight >= document.documentElement.scrollHeight - 4;
+    if (atBottom) return sectionIds[sectionIds.length - 1];
+
+    // A section becomes active when its top enters the top third of the viewport.
+    // Using 33% of viewport height means you have to actually be looking at the
+    // section before it activates — not just because the previous one is still tall.
+    const trigger = navHeight + window.innerHeight * 0.33;
+
+    let active = sectionIds[0];
+    for (const id of sectionIds) {
+      const el = document.getElementById(id);
+      if (el && el.offsetTop - trigger <= scrollY) {
+        active = id;
+      }
+    }
+    return active;
+  };
+
+  // Set on load
+  setActive(getActiveSection());
+
+  // Update on scroll using rAF so we don't thrash on every pixel
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        setActive(getActiveSection());
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
+
+  // On click: set immediately for instant feedback
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => setActive(link.dataset.section));
   });
-
-  sections.forEach(s => s && observer.observe(s));
 }
 
 // ============================================================
@@ -331,6 +361,18 @@ function buildCard(p) {
 // ============================================================
 //  Helpers
 // ============================================================
+// Normalizes line breaks from copy-pasted text and highlights tech keywords
+function highlightTagline(text) {
+  const normalized = escHtml(text.replace(/\s*\n\s*/g, ' ').trim());
+
+  const keywords = [
+    'C#', '\\.NET Framework', 'ASP\\.NET Web API', 'SQL Server',
+    'JWT', 'banking', 'fintech', 'RESTful APIs', 'microservices',
+  ];
+  const regex = new RegExp(`(${keywords.join('|')})`, 'gi');
+  return normalized.replace(regex, '<span class="kw">$1</span>');
+}
+
 function escHtml(str) {
   if (!str) return '';
   return String(str)
