@@ -1,6 +1,6 @@
 # Backend — kept local only, not part of the hosted portfolio
 backend/
-Portfolio.sln
+Portfolio.sln 
 SETUP.md
 
 # OS
@@ -10,3 +10,5 @@ Thumbs.db
 # IDE
 .vscode/
 .idea/
+
+.vs/
