@@ -218,6 +218,7 @@ function mergeProjects(ghRepos, meta) {
       language: repo.language,
       stars: repo.stargazers_count,
       topics: (repo.topics || []).filter(t => t !== 'portfolio'),
+      stack: m?.stack || [],
       isFeatured: m?.isFeatured ?? false,
       sortOrder: m?.sortOrder ?? 0,
       lastUpdated: repo.updated_at,
@@ -243,6 +244,7 @@ function mergeProjects(ghRepos, meta) {
       language: null,
       stars: 0,
       topics: [],
+      stack: m.stack || [],
       isFeatured: m.isFeatured ?? false,
       sortOrder: m.sortOrder ?? 0,
       lastUpdated: null,
@@ -322,21 +324,31 @@ function buildCard(p) {
        </a>`
     : '';
 
-  const ghBtn = p.gitHubUrl
-    ? `<a href="${escHtml(p.gitHubUrl)}" target="_blank" rel="noopener" class="card-btn">
-        ${githubIcon()} Code
-       </a>`
-    : '';
-
   const updated = p.lastUpdated
     ? `<span class="source-badge">${timeAgo(p.lastUpdated)}</span>`
     : `<span class="source-badge">${escHtml(p.source)}</span>`;
+
+  const stackPanel = p.stack?.length
+    ? `<div class="card-stack-panel">
+        <span class="stack-panel-title">Stack</span>
+        <div class="stack-groups">
+          ${p.stack.map(group => `
+            <div class="stack-group">
+              <span class="stack-group-label">${escHtml(group.label)}</span>
+              <div class="stack-items">
+                ${group.items.map(i => `<span class="stack-item">${escHtml(i)}</span>`).join('')}
+              </div>
+            </div>`).join('')}
+        </div>
+      </div>`
+    : '';
 
   return `
     <article class="project-card">
       <div class="card-image-wrap">
         ${image}
         ${githubOverlay}
+        ${stackPanel}
         ${ribbon}
       </div>
       <div class="card-body">
@@ -351,7 +363,7 @@ function buildCard(p) {
       <footer class="card-footer">
         <div class="card-actions">
           ${liveBtn}
-          ${ghBtn}
+          ${p.gitHubUrl ? `<a href="${escHtml(p.gitHubUrl)}" target="_blank" rel="noopener" class="card-btn">${githubIcon()} Code</a>` : ''}
         </div>
         ${updated}
       </footer>

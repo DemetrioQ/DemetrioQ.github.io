@@ -305,7 +305,9 @@ code { font-family: 'JetBrains Mono', monospace; }
   opacity: 0;
   transition: opacity var(--transition);
 }
-.project-card:hover .card-github-overlay { opacity: 1; }
+/* Hide GitHub overlay when stack panel is present — stack takes priority */
+.project-card:hover .card-github-overlay:not(:has(~ .card-stack-panel)) { opacity: 1; }
+.project-card:has(.card-stack-panel):hover .card-github-overlay { opacity: 0; }
 .card-github-overlay a {
   display: flex; align-items: center; gap: 0.5rem;
   color: #fff; font-weight: 600; font-size: 0.9rem;
@@ -316,6 +318,51 @@ code { font-family: 'JetBrains Mono', monospace; }
 }
 .card-github-overlay a:hover { background: rgba(255,255,255,0.15); }
 .card-github-overlay svg { width: 18px; height: 18px; }
+
+/* ===== Stack panel — slides up from bottom of card image on hover ===== */
+.card-stack-panel {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 14, 20, 0.96);
+  backdrop-filter: blur(8px);
+  border-top: 1px solid rgba(88, 166, 255, 0.2);
+  padding: 1rem 1.1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transform: translateY(100%);
+  transition: transform 250ms ease;
+}
+.project-card:hover .card-stack-panel { transform: translateY(0); }
+
+.stack-panel-title {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.6rem;
+}
+.stack-groups { display: flex; flex-direction: column; gap: 0.45rem; }
+.stack-group { display: flex; align-items: baseline; gap: 0.5rem; }
+.stack-group-label {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  font-family: 'JetBrains Mono', monospace;
+  min-width: 52px;
+  flex-shrink: 0;
+}
+.stack-items { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+.stack-item {
+  font-size: 0.68rem;
+  font-family: 'JetBrains Mono', monospace;
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+  background: rgba(88, 166, 255, 0.1);
+  border: 1px solid rgba(88, 166, 255, 0.2);
+  color: var(--text);
+}
 
 .featured-ribbon {
   position: absolute; top: 10px; right: -8px;
@@ -341,6 +388,8 @@ code { font-family: 'JetBrains Mono', monospace; }
 .card-btn { font-size: 0.78rem; font-weight: 500; color: var(--text-muted); display: flex; align-items: center; gap: 0.3rem; transition: color var(--transition); }
 .card-btn:hover { color: var(--accent); }
 .card-btn svg { width: 14px; height: 14px; }
+.card-btn-icon { padding: 0.1rem; }
+.card-btn-icon svg { width: 16px; height: 16px; }
 .source-badge { font-size: 0.65rem; font-family: 'JetBrains Mono', monospace; color: var(--text-muted); opacity: 0.5; }
 
 /* ===== Loading / Empty ===== */

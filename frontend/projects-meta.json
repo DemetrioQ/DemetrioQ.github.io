@@ -4,6 +4,11 @@
     "isFeatured": false,
     "sortOrder": 1,
     "imageUrl": "assets/projects/2048-next-express/2048-next-express-img.png",
-    "liveUrl": "https://2048-next-express.vercel.app/"
+    "liveUrl": "https://2048-next-express.vercel.app/",
+    "stack": [
+      { "label": "Frontend",  "items": ["Next.js", "TypeScript", "React"] },
+      { "label": "Backend",   "items": ["Express.js", "TypeScript"] },
+      { "label": "Auth",      "items": ["Passport.js", "Local", "Google OAuth", "GitHub OAuth"] }
+    ]
   }
 ]
