@@ -212,8 +212,8 @@ function mergeProjects(ghRepos, meta) {
     result.push({
       title: m?.customTitle || repo.name,
       description: m?.customDescription || repo.description || '',
-      imageUrl: m?.imageUrl || null,
-      liveUrl: m?.liveUrl || null,
+      imageUrl: m?.imageUrl || `https://opengraph.githubassets.com/1/${repo.full_name}`,
+      liveUrl: (repo.homepage && repo.homepage.trim()) || m?.liveUrl || null,
       gitHubUrl: repo.html_url,
       language: repo.language,
       stars: repo.stargazers_count,

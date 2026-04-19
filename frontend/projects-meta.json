@@ -1,10 +1,51 @@
 [
   {
-    "repoName": "2048-next-express",
+    "repoName": "dotnet-multitenant-api",
     "isFeatured": false,
     "sortOrder": 1,
+    "imageUrl": "assets/projects/multitenant/api.png",
+    "stack": [
+      { "label": "Runtime",       "items": [".NET 9", "ASP.NET Core 9", "C#"] },
+      { "label": "Architecture",  "items": ["Clean Architecture", "Multi-tenant", "MediatR", "FluentValidation"] },
+      { "label": "Data",          "items": ["EF Core 9", "Azure SQL", "Global Query Filters"] },
+      { "label": "Auth",          "items": ["JWT", "Refresh Token Rotation", "BCrypt", "Role-based"] },
+      { "label": "Payments",      "items": ["Stripe Connect", "Webhooks"] },
+      { "label": "Infra",         "items": ["Docker", "Caddy", "Oracle Cloud ARM", "GitHub Actions CI/CD"] },
+      { "label": "Observability", "items": ["Serilog", "Seq"] },
+      { "label": "Email",         "items": ["Resend", "Templated"] },
+      { "label": "Tests",         "items": ["xUnit", "FluentAssertions", "SQLite in-memory"] }
+    ]
+  },
+  {
+    "repoName": "multitenant-dashboard",
+    "isFeatured": false,
+    "sortOrder": 2,
+    "imageUrl": "assets/projects/multitenant/dashboard.png",
+    "stack": [
+      { "label": "Frontend",  "items": ["React 19", "Vite", "TypeScript", "Tailwind v4"] },
+      { "label": "Routing",   "items": ["React Router"] },
+      { "label": "Auth",      "items": ["JWT (sessionStorage)", "HttpOnly refresh cookie", "Role-based"] },
+      { "label": "Uploads",   "items": ["UploadThing v7", "react-easy-crop"] },
+      { "label": "Features",  "items": ["Multi-tenant admin", "Orders", "Customers", "Products", "Team", "Audit", "Stripe Connect onboarding", "Email template editor"] }
+    ]
+  },
+  {
+    "repoName": "multitenant-storefront",
+    "isFeatured": false,
+    "sortOrder": 3,
+    "imageUrl": "assets/projects/multitenant/storefront.png",
+    "stack": [
+      { "label": "Frontend",  "items": ["Next.js 16 (App Router)", "React 19", "TypeScript", "Tailwind v4"] },
+      { "label": "Tenancy",   "items": ["Subdomain resolution", "*.shop.demetrioq.com"] },
+      { "label": "Commerce",  "items": ["Product catalog", "Cart", "Checkout", "Stripe Elements"] },
+      { "label": "Infra",     "items": ["Docker", "SSR", "Caddy wildcard SSL"] }
+    ]
+  },
+  {
+    "repoName": "2048-next-express",
+    "isFeatured": false,
+    "sortOrder": 4,
     "imageUrl": "assets/projects/2048-next-express/2048-next-express-img.png",
-    "liveUrl": "https://2048-next-express.vercel.app/",
     "stack": [
       { "label": "Frontend",  "items": ["Next.js", "TypeScript", "React"] },
       { "label": "Backend",   "items": ["Express.js", "TypeScript"] },
