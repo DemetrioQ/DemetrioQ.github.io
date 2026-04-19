@@ -1,0 +1,11 @@
+.git
+.github
+.gitignore
+.vscode
+.idea
+.vs
+backend
+Portfolio.sln
+SETUP.md
+Thumbs.db
+.DS_Store
