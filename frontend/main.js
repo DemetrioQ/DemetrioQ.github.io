@@ -170,14 +170,47 @@ async function loadProjects() {
   }
 }
 
+const GH_CACHE_KEY = `ghRepos:${CONFIG.GITHUB_USERNAME}`;
+const GH_CACHE_TTL_MS = 15 * 60 * 1000; // 15 min — GitHub's unauthenticated search API allows only 10 req/min per IP
+
 async function fetchGitHubRepos() {
+  const cached = readGhCache();
+  if (cached && Date.now() - cached.savedAt < GH_CACHE_TTL_MS) {
+    return cached.items;
+  }
+
   const url = `https://api.github.com/search/repositories?q=user:${CONFIG.GITHUB_USERNAME}+topic:portfolio&sort=updated&per_page=50`;
-  const res = await fetch(url, {
-    headers: { 'Accept': 'application/vnd.github+json' }
-  });
-  if (!res.ok) throw new Error(`GitHub API returned ${res.status}`);
-  const data = await res.json();
-  return data.items ?? [];
+  try {
+    const res = await fetch(url, {
+      headers: { 'Accept': 'application/vnd.github+json' }
+    });
+    if (!res.ok) throw new Error(`GitHub API returned ${res.status}`);
+    const data = await res.json();
+    const items = data.items ?? [];
+    writeGhCache(items);
+    return items;
+  } catch (err) {
+    // Rate-limited or offline — fall back to the last known-good response rather than an empty page
+    if (cached) return cached.items;
+    throw err;
+  }
+}
+
+function readGhCache() {
+  try {
+    const raw = localStorage.getItem(GH_CACHE_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch {
+    return null;
+  }
+}
+
+function writeGhCache(items) {
+  try {
+    localStorage.setItem(GH_CACHE_KEY, JSON.stringify({ savedAt: Date.now(), items }));
+  } catch {
+    // localStorage unavailable (private mode, quota) — non-fatal, just skip caching
+  }
 }
 
 async function fetchMeta() {

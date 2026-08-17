@@ -1,6 +1,9 @@
 // ============================================================
 //  Site configuration — edit this file to customize the portfolio.
-//  For deployment: update API_BASE to your production API URL.
+//  NOTE: index.html mirrors these values directly (title, hero,
+//  badges, contact, footer) to avoid a flash of empty content on
+//  load. If you change NAME/TITLE/TAGLINE/BADGES/EMAIL/socials
+//  here, update the matching text in index.html too.
 // ============================================================
 const CONFIG = {
   // Your GitHub username — used to fetch repos tagged "portfolio"
