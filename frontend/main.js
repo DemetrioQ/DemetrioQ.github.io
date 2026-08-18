@@ -411,8 +411,9 @@ function highlightTagline(text) {
   const normalized = escHtml(text.replace(/\s*\n\s*/g, ' ').trim());
 
   const keywords = [
-    'C#', '\\.NET Framework', 'ASP\\.NET Web API', 'SQL Server',
-    'JWT', 'banking', 'fintech', 'RESTful APIs', 'microservices',
+    'C#', '\\.NET Framework', 'ASP\\.NET Core', 'ASP\\.NET Web API', 'SQL Server',
+    'Clean Architecture', 'CQRS', 'JWT', 'banking', 'fintech',
+    'APIs', 'microservices',
   ];
   const regex = new RegExp(`(${keywords.join('|')})`, 'gi');
   return normalized.replace(regex, '<span class="kw">$1</span>');

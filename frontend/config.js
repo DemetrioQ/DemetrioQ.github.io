@@ -12,16 +12,16 @@ const CONFIG = {
   // Personal info
   NAME: 'Demetrio Quinones',
   TITLE: '.NET Backend Developer',
-  TAGLINE: `Backend Software Engineer with 3 years of experience designing and maintaining enterprise backend
-architectures and RESTful APIs for banking and fintech platforms. Strong background in C#, .NET
-Framework, ASP.NET Web API, SQL Server, and JWT-based authentication. Proven ability to design
-reusable backend modules, standardize authentication across services, centralize shared infrastructure, and
-reduce service initialization latency`,
+  TAGLINE: `Backend Software Engineer with 4 years of experience specializing in C# / .NET, building
+scalable APIs and microservices for banking and fintech platforms. Strong background in
+ASP.NET Core, .NET Framework, ASP.NET Web API, SQL Server, Clean Architecture & CQRS, and
+JWT-based authentication. Backend lead for a team of 4, with a track record of improving
+performance, reliability, and maintainability.`,
 
   // Contact links
   EMAIL: 'demetriorqe@gmail.com',
   GITHUB_URL: 'https://github.com/DemetrioQ',
-  LINKEDIN_URL: 'https://www.linkedin.com/in/demetrio-quinones-068a4a1ba/',
+  LINKEDIN_URL: 'https://www.linkedin.com/in/demetrioquinones/',
 
   // Tech badges shown in the hero
   BADGES: ['ASP.NET', 'C#', 'Entity Framework', 'SQL Server', 'Redis', 'Azure'],
